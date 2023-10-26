@@ -5,22 +5,35 @@
 function getComputerChoice () {
     let randomNumber = Math.floor(Math.random() * 3) + 1;
     if ( randomNumber == 1 ) {
-        let computerSelection = "rock" 
+        let computerSelection = "rock"; 
         return computerSelection;
     }
     else if ( randomNumber == 2 ) {
-        let computerSelection = "paper"
+        let computerSelection = "paper";
         return computerSelection;
     }
     else {
-        let computerSelection = "scissors" 
+        let computerSelection = "scissors";
         return computerSelection;
     }
 }
 
+// function getPlayerChoice:
+//      Asks the user to input choice and validates it, then returns the choice.
+
 function getPlayerChoice() {
-    let playerSelection = prompt("Please type Rock, Paper or Scissors:");
-    playerSelection = playerSelection.toLowerCase();
+    let keepTrying = true;
+    while ( keepTrying == true ){
+        let playerInput = prompt("Please type Rock, Paper or Scissors:");
+        playerInput = playerInput.toLowerCase();
+        if ( (playerInput !== "rock") && (playerInput !== "paper") && (playerInput !== "scissors") ){
+            console.log("Invalid choice. Please type Rock, Paper or Scissors.");
+        }
+        else {
+            playerSelection = playerInput;
+            keepTrying = false;
+        }
+    }
     return playerSelection;
 }
 
@@ -66,15 +79,15 @@ function playRound(playerSelection, computerSelection) {
 }
 
 // Game function:
-// Runs a for loop 5 times and on each round gets the user and computer choices and executes the playRound function. 
-// If the player or the computer gets 3 points it wins, if not, whoever has more points in the 5th round wins.
-// If the player and computer have the same points on round 5 then it's a tie.
+//     Runs a for loop 5 times and on each round gets the user and computer choices and executes the playRound function. 
+//     If the player or the computer gets 3 points it wins, if not, whoever has more points in the 5th round wins.
+//     If the player and computer have the same points on round 5 then it's a tie.
 
 function game() {    
     console.log("Welcome to Rock/Paper/Scissors!");
     for ( let i = 0; i <= 4; i++ ) {
         if ( roundNumber == 1 ) {
-            console.log("Let's start! Round 1!")
+            console.log("Let's start! Round 1!");
             }
         else {
             console.log(`Round ${roundNumber}`);  
@@ -82,6 +95,7 @@ function game() {
         console.log("Please make your selection!");
         computerSelection = getComputerChoice();
         playerSelection = getPlayerChoice();
+
         console.log(playRound(playerSelection, computerSelection));
         if ( playerScore == 3 ) {
             console.log("You have won the game!");
