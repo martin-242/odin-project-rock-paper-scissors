@@ -1,4 +1,4 @@
-/* Pseudocode:
+/* 
 
 getComputerChoice function
     create a computerSelection variable
@@ -8,6 +8,19 @@ getComputerChoice function
         else choose Scissors
 
 */
+
+function getComputerChoice () {
+    let randomNumber = Math.floor(Math.random() * 3) + 1;
+    if ( randomNumber == 1 )
+        computerSelection = "rock" 
+    else if ( randomNumber == 2 )
+        computerSelection = "paper"
+    else ( computerSelection = "scissors" );
+
+    console.log(computerSelection);
+}
+
+getComputerChoice();
 
 /*
 
@@ -19,6 +32,8 @@ getPlayerChoice function
     if correct store in playerSelection
 
 */
+
+
 
 /* 
 
@@ -42,6 +57,6 @@ playRound function with playerSelection and computerSelection as parameters
 /* 
 
 game function
-playround 5 times     
+playground 5 times     
 
 */
