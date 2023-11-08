@@ -46,6 +46,9 @@ startGameButton.addEventListener('click', () => {
     playerScoreContent.textContent = `Player : ${playerScore}`;
     computerScoreContent.textContent = `${computerScore} : Computer`;
     resultContent.textContent = "Choose your move to start the game!";
+    btnRock.addEventListener('click', addButtonValueRock);
+    btnPaper.addEventListener('click', addButtonValuePaper); 
+    btnScissors.addEventListener('click', addButtonValueScissors);
     startGameButtonContainer.removeChild(startGameButton);
   });
 
@@ -107,50 +110,43 @@ function playRound(playerSelection, computerSelection) {
         playerScoreContent.textContent = `Player : ${playerScore}`;
         computerScoreContent.textContent = `${computerScore} : Computer`;
         roundContent.textContent = `Round ${roundNumber}`;
+        disableSelectionButtons();
         startGameButtonContainer.appendChild(startGameButton);
+        
     }
     else if ( computerScore == 5 ) {
         playerScoreContent.textContent = `Player : ${playerScore}`;
         computerScoreContent.textContent = `${computerScore} : Computer`;
         roundContent.textContent = `Round ${roundNumber}`;
-        startGameButtonContainer.appendChild(startGameButton);
+        disableSelectionButtons();
+        startGameButtonContainer.appendChild(startGameButton);   
     }
 };
 
-// Assigns events to buttons
+// Removes the event listeners to disable the buttons
+function disableSelectionButtons() {
+    btnRock.removeEventListener('click', rockClickHandler);
+    btnPaper.removeEventListener('click', paperClickHandler);
+    btnScissors.removeEventListener('click', scissorsClickHandler);
 
-function addButtonValueRock(){
-    playerSelection = "rock";
-    computerSelection = getComputerChoice();
-    playRound(playerSelection, computerSelection);
 };
 
-function addButtonValuePaper(){
-    playerSelection = "paper";
-    computerSelection = getComputerChoice();
-    playRound(playerSelection, computerSelection);
-};
+// Assigns events to buttons so each button plays the round with the user selection and computer selection
 
-function addButtonValueScissors(){
-    playerSelection = "scissors";
+function addButtonValue(playerChoice){
     computerSelection = getComputerChoice();
-    playRound(playerSelection, computerSelection);
+    playRound(playerChoice, computerSelection);
 };
 
 const btnRock = document.querySelector("#btn_rock");
-btnRock.addEventListener('click', addButtonValueRock);
+const rockClickHandler = () => addButtonValue('rock');
+btnRock.addEventListener('click', rockClickHandler);
 
 const btnPaper = document.querySelector("#btn_paper");
-btnPaper.addEventListener('click', addButtonValuePaper); 
+const paperClickHandler = () => addButtonValue('paper');
+btnPaper.addEventListener('click', paperClickHandler);
 
 const btnScissors = document.querySelector("#btn_scissors");
-btnScissors.addEventListener('click', addButtonValueScissors);
+const scissorsClickHandler = () => addButtonValue('scissors');
+btnScissors.addEventListener('click', scissorsClickHandler);
 
-// Removes events once the score is met (not working)
-
-if ( playerScore === 5 || computerScore === 5 ) {
-    console.log("Its 5!");
-    btnRock.removeEventListener('click', addButtonValueRock);
-    btnPaper.removeEventListener('click', addButtonValuePaper);
-    btnScissors.removeEventListener('click', addButtonValueScissors);
-};
