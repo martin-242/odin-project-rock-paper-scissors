@@ -46,10 +46,10 @@ startGameButton.addEventListener('click', () => {
     playerScoreContent.textContent = `Player : ${playerScore}`;
     computerScoreContent.textContent = `${computerScore} : Computer`;
     resultContent.textContent = "Choose your move to start the game!";
+    startGameButtonContainer.removeChild(startGameButton);
     btnRock.addEventListener('click', addButtonValueRock);
     btnPaper.addEventListener('click', addButtonValuePaper); 
     btnScissors.addEventListener('click', addButtonValueScissors);
-    startGameButtonContainer.removeChild(startGameButton);
   });
 
 // getComputerChoice function:
