@@ -130,6 +130,7 @@ function disableSelectionButtons() {
 
 };
 
+// Creates the event listeners to enable the buttons
 function enableSelectionButtons() {
     btnRock.addEventListener('click', rockClickHandler);
     btnPaper.addEventListener('click', paperClickHandler);
