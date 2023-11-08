@@ -60,6 +60,7 @@ h1 {
     align-items: center;
     justify-content: center;
     margin: 40px;
+    margin-bottom: 20px;
 }
 
 #buttons_all {
@@ -90,16 +91,40 @@ h1 {
     transform: scale(1.1);   
 }
 
-.button_disabled{
+.button_disabled {
     filter: grayscale(100%);
+}
+
+.button_disabled:hover {
+    filter: grayscale(100%);
+    transform: scale(1);
+}
+
+.restart_button {
+    border: solid ghostwhite 1px;
+    background-color: rgba(155, 155, 155, 0.315);
+    border-radius: 5px;
+    padding: 5px;
+    margin: 20px;
+    color: ghostwhite;
+    font-size: 18px;
+    transition: transform 0.3s;
+}
+
+.restart_button:hover{
+    transform: scale(1.1);
 }
 
 .results_container {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 20px;
+    font-size: 15px;
     margin: 20px;
+}
+
+.winner_container {
+    font-size: 18px;
 }
 
 p {

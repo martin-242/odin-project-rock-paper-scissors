@@ -31,7 +31,11 @@ const computerScoreContent = document.createElement("p");
 computerScoreContent.textContent = `${computerScore} : Computer`;
 computerScoreContainer.appendChild(computerScoreContent);
 
-// Creates "Start Game" button
+// Creates Winner message text elements to be appended later
+const winnerContainer = document.querySelector("#winner_container");
+const winnerContent = document.createElement("p");
+
+// Creates "Start Game" button with its functionality to be appended later
 const startGameButtonContainer = document.querySelector("#star_game_button_container");
 const startGameButton = document.createElement("button");
 startGameButton.textContent = "Play Again";
@@ -48,6 +52,7 @@ startGameButton.addEventListener('click', () => {
     resultContent.textContent = "Choose your move to start the game!";
     enableSelectionButtons();
     startGameButtonContainer.removeChild(startGameButton);
+    winnerContainer.removeChild(winnerContent); 
     
   });
 
@@ -82,7 +87,7 @@ function playRound(playerSelection, computerSelection) {
         ( playerSelection === "scissors" && computerSelection === "paper" ) && 
         ( computerScore <= 5 || playerScore <= 5 )) {
         playerScore = playerScore + 1;
-        resultContent.textContent = (`Player selected: "${playerSelection}". Computer selected: "${computerSelection}". - You won this round!`);
+        resultContent.textContent = (`You selected: "${playerSelection}". Computer selected: "${computerSelection}". - You won this round!`);
         roundNumber = roundNumber + 1;
         roundContent.textContent = `Round ${roundNumber}`;
         playerScoreContent.textContent = `Player : ${playerScore}`;
@@ -94,14 +99,14 @@ function playRound(playerSelection, computerSelection) {
         ( playerSelection === "paper" && computerSelection === "scissors" ) && 
         ( computerScore <= 5 || playerScore <= 5 ))  {
         computerScore = computerScore + 1;
-        resultContent.textContent = (`Player selected: "${playerSelection}". Computer selected: "${computerSelection}". - Computer won this round!`);
+        resultContent.textContent = (`You selected: "${playerSelection}". Computer selected: "${computerSelection}". - Computer won this round!`);
         roundNumber = roundNumber + 1;
         roundContent.textContent = `Round ${roundNumber}`;
         playerScoreContent.textContent = `Player : ${playerScore}`;
         computerScoreContent.textContent = `${computerScore} : Computer`;
         }
     else if ( playerSelection === computerSelection ) {
-        resultContent.textContent = (`Player selected: "${playerSelection}". Computer selected: "${computerSelection}". - It's a tie!`);
+        resultContent.textContent = (`You selected: "${playerSelection}". Computer selected: "${computerSelection}". - It's a tie!`);
         roundNumber = roundNumber + 1;
         roundContent.textContent = `Round ${roundNumber}`;
         }
@@ -109,16 +114,20 @@ function playRound(playerSelection, computerSelection) {
         playerScoreContent.textContent = `Player : ${playerScore}`;
         computerScoreContent.textContent = `${computerScore} : Computer`;
         roundContent.textContent = `Round ${roundNumber}`;
+        winnerContent.textContent = "You won! Congratulations!";
         disableSelectionButtons();
         startGameButtonContainer.appendChild(startGameButton);
+        winnerContainer.appendChild(winnerContent); 
         
     }
     else if ( computerScore == 5 ) {
         playerScoreContent.textContent = `Player : ${playerScore}`;
         computerScoreContent.textContent = `${computerScore} : Computer`;
         roundContent.textContent = `Round ${roundNumber}`;
+        winnerContent.textContent = "You lost! The computer won the game!";
         disableSelectionButtons();
         startGameButtonContainer.appendChild(startGameButton);   
+        winnerContainer.appendChild(winnerContent); 
     }
 };
 
@@ -127,6 +136,9 @@ function disableSelectionButtons() {
     btnRock.removeEventListener('click', rockClickHandler);
     btnPaper.removeEventListener('click', paperClickHandler);
     btnScissors.removeEventListener('click', scissorsClickHandler);
+    btnRock.setAttribute("class", "button_disabled");
+    btnPaper.setAttribute("class", "button_disabled");
+    btnScissors.setAttribute("class", "button_disabled");
 
 };
 
@@ -135,6 +147,9 @@ function enableSelectionButtons() {
     btnRock.addEventListener('click', rockClickHandler);
     btnPaper.addEventListener('click', paperClickHandler);
     btnScissors.addEventListener('click', scissorsClickHandler);
+    btnRock.setAttribute("class", "button1");
+    btnPaper.setAttribute("class", "button2");
+    btnScissors.setAttribute("class", "button3");
 };
 
 // Assigns events to buttons so each button plays the round with the user selection and computer selection
