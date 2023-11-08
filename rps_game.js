@@ -46,10 +46,9 @@ startGameButton.addEventListener('click', () => {
     playerScoreContent.textContent = `Player : ${playerScore}`;
     computerScoreContent.textContent = `${computerScore} : Computer`;
     resultContent.textContent = "Choose your move to start the game!";
+    enableSelectionButtons();
     startGameButtonContainer.removeChild(startGameButton);
-    btnRock.addEventListener('click', addButtonValueRock);
-    btnPaper.addEventListener('click', addButtonValuePaper); 
-    btnScissors.addEventListener('click', addButtonValueScissors);
+    
   });
 
 // getComputerChoice function:
@@ -129,6 +128,12 @@ function disableSelectionButtons() {
     btnPaper.removeEventListener('click', paperClickHandler);
     btnScissors.removeEventListener('click', scissorsClickHandler);
 
+};
+
+function enableSelectionButtons() {
+    btnRock.addEventListener('click', rockClickHandler);
+    btnPaper.addEventListener('click', paperClickHandler);
+    btnScissors.addEventListener('click', scissorsClickHandler);
 };
 
 // Assigns events to buttons so each button plays the round with the user selection and computer selection
